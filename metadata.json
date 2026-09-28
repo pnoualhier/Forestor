@@ -1,0 +1,6 @@
+{
+  "name": "Forestor — Global Forest Resources Assessment",
+  "description": "Application mondiale d'exploration, de comparaison et de visualisation des ressources forestières mondiales basées sur les données officielles du Global Forest Resources Assessment (FRA 2025) de la FAO.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

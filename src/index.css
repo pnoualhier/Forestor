@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+.repeating-stripes {
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(168, 162, 158, 0.25),
+    rgba(168, 162, 158, 0.25) 4px,
+    transparent 4px,
+    transparent 8px
+  );
+}
+
+.repeating-linear-stripes {
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(168, 162, 158, 0.35),
+    rgba(168, 162, 158, 0.35) 6px,
+    transparent 6px,
+    transparent 12px
+  );
+}

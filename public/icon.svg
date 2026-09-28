@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#064e3b" />
+      <stop offset="50%" stop-color="#047857" />
+      <stop offset="100%" stop-color="#022c22" />
+    </linearGradient>
+    <linearGradient id="treeGrad1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#34d399" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+    <linearGradient id="treeGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#6ee7b7" />
+      <stop offset="100%" stop-color="#10b981" />
+    </linearGradient>
+    <linearGradient id="treeGrad3" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background rounded rect -->
+  <rect width="512" height="512" rx="104" fill="url(#bg)" />
+
+  <!-- Subtle concentric rings representing tree growth rings & world grid -->
+  <circle cx="256" cy="256" r="210" fill="none" stroke="#ffffff" stroke-opacity="0.08" stroke-width="3" stroke-dasharray="8 6" />
+  <circle cx="256" cy="256" r="160" fill="none" stroke="#ffffff" stroke-opacity="0.12" stroke-width="2.5" />
+  <circle cx="256" cy="256" r="110" fill="none" stroke="#ffffff" stroke-opacity="0.1" stroke-width="2" stroke-dasharray="6 4" />
+
+  <!-- Ground curve / rolling hills -->
+  <path d="M 64 390 Q 180 340 256 370 T 448 370 L 448 448 L 64 448 Z" fill="#022c22" opacity="0.6" />
+  <path d="M 64 410 Q 160 380 256 395 T 448 395 L 448 448 L 64 448 Z" fill="#011b15" opacity="0.8" />
+
+  <!-- Left Pine Tree (Smaller background) -->
+  <g transform="translate(130, 180) scale(0.65)">
+    <polygon points="100,20 40,110 70,110 30,190 70,190 20,270 180,270 130,190 170,190 130,110 160,110" fill="url(#treeGrad3)" />
+    <rect x="90" y="270" width="20" height="50" fill="#78350f" rx="3" />
+  </g>
+
+  <!-- Right Deciduous Tree (Middle background) -->
+  <g transform="translate(290, 190) scale(0.6)">
+    <rect x="85" y="240" width="30" height="70" fill="#78350f" rx="4" />
+    <circle cx="100" cy="130" r="90" fill="url(#treeGrad1)" opacity="0.95" />
+    <circle cx="60" cy="150" r="60" fill="url(#treeGrad3)" opacity="0.85" />
+    <circle cx="140" cy="150" r="60" fill="url(#treeGrad2)" opacity="0.9" />
+  </g>
+
+  <!-- Center Grand Tree (Hero Foreground) -->
+  <g transform="translate(156, 110)">
+    <!-- Trunk -->
+    <path d="M 90 230 L 80 300 Q 100 305 120 300 L 110 230 Z" fill="#92400e" />
+    <path d="M 75 295 Q 60 305 50 308 Q 75 302 85 292 Z" fill="#78350f" />
+    <path d="M 125 295 Q 140 305 150 308 Q 125 302 115 292 Z" fill="#78350f" />
+
+    <!-- Canopy layers -->
+    <!-- Lower canopy -->
+    <path d="M 100 70 Q 20 160 30 220 Q 50 240 100 235 Q 150 240 170 220 Q 180 160 100 70 Z" fill="url(#treeGrad1)" />
+    
+    <!-- Mid canopy highlights -->
+    <circle cx="70" cy="180" r="45" fill="url(#treeGrad3)" opacity="0.9" />
+    <circle cx="130" cy="180" r="45" fill="url(#treeGrad2)" opacity="0.95" />
+    <circle cx="100" cy="140" r="50" fill="url(#treeGrad2)" />
+
+    <!-- Leaf veins / stylized geometry -->
+    <path d="M 100 100 L 100 210" stroke="#a7f3d0" stroke-width="4" stroke-linecap="round" opacity="0.5" />
+    <path d="M 100 130 L 75 110" stroke="#a7f3d0" stroke-width="3" stroke-linecap="round" opacity="0.5" />
+    <path d="M 100 150 L 125 130" stroke="#a7f3d0" stroke-width="3" stroke-linecap="round" opacity="0.5" />
+    <path d="M 100 170 L 75 150" stroke="#a7f3d0" stroke-width="3" stroke-linecap="round" opacity="0.5" />
+  </g>
+
+  <!-- Small seedling / regeneration leaf at bottom center -->
+  <g transform="translate(244, 385)">
+    <path d="M 12 25 C 2 15 0 5 12 0 C 24 5 22 15 12 25 Z" fill="#a7f3d0" />
+    <path d="M 12 25 L 12 6" stroke="#047857" stroke-width="2" />
+  </g>
+</svg>

@@ -1,0 +1,110 @@
+export const fr = {
+  // Navigation & Branding
+  appName: 'Forestor',
+  appTagline: 'Ressources forestières mondiales — FAO FRA 2025',
+  appSubheader: 'Explorer, comprendre et comparer les forêts du monde à partir des données officielles de la FAO',
+  navExploreCountry: 'Explorer un pays',
+  navWorldMap: 'Carte mondiale',
+  navCompare: 'Comparer des pays',
+  navIndicators: 'Indicateurs',
+  navAbout: 'Sources & Méthodologie',
+
+  // Actions & Controls
+  searchPlaceholder: 'Rechercher un pays (ex: France, Brésil, Canada)...',
+  selectCountry: 'Choisir un pays',
+  selectIndicator: 'Choisir un indicateur',
+  selectYear: 'Sélectionner l’année',
+  compareCountries: 'Comparer des pays',
+  refreshData: 'Actualiser les données',
+  installApp: 'Installer l’application',
+  installIOS: 'Installer sur iOS',
+  installIOSDesc: '1. Appuyez sur Partager dans Safari.\n2. Sélectionnez « Sur l’écran d’accueil ».',
+  close: 'Fermer',
+  clear: 'Effacer',
+  details: 'En savoir plus',
+  backToTop: 'Haut de page',
+
+  // Status & Badges
+  dataOfficial: 'Donnée officielle FAO',
+  dataEstimated: 'Estimation FAO',
+  dataCalculated: 'Calcul Forestor',
+  dataMissing: 'Non communiqué ou non disponible',
+  dataNotReported: 'Non communiqué par le pays',
+  fromCacheNotice: 'Données issues du cache local',
+  offlineNotice: 'Mode hors-ligne — Consultation des données mises en mémoire',
+  updatedAt: 'Mis à jour le',
+  neverHardcoded: 'Zéro chiffre inventé — Traçabilité 100% FAO FRA',
+
+  // Homepage sections
+  homeHeroTitle: 'L’état des forêts mondiales en données vérifiées',
+  homeHeroSubtitle: 'Accédez aux statistiques du Global Forest Resources Assessment 2025 de l’Organisation des Nations Unies pour l’alimentation et l’agriculture (FAO).',
+  worldOverviewTitle: 'Aperçu mondial 2025',
+  worldForestArea: 'Superficie forestière mondiale',
+  worldForestProportion: 'Part du territoire mondial',
+  worldCarbonStock: 'Stock total de carbone forestier',
+  worldProtectedShare: 'Forêts en zones protégées',
+  exploreCategoriesTitle: 'Catégories d’indicateurs',
+  quickAccessTitle: 'Pays fréquemment consultés',
+  ctaExploreWorld: 'Ouvrir la carte interactive',
+  ctaCompare: 'Lancer un comparatif',
+
+  // Country Page
+  countryNotFound: 'Pays introuvable dans la base FRA 2025.',
+  summaryTab: 'Synthèse générale',
+  historicalTrendsTab: 'Évolution 1990–2025',
+  indicatorsDetailTab: 'Toutes les variables',
+  countryDescriptionsTab: 'Sources nationales & notes',
+  forestAreaSummary: 'Surface forestière',
+  proportionSummary: 'Couverture du territoire',
+  changeSince1990: 'Évolution depuis 1990',
+  annualNetChange: 'Variation annuelle nette',
+  primaryForestShare: 'Forêt primaire',
+  protectedForestShare: 'Forêt sous protection',
+  carbonSummary: 'Stock de carbone',
+  growingStockSummary: 'Bois sur pied',
+  noDataAvailableForCountry: 'Aucune donnée communiquée pour cette variable par ce pays.',
+
+  // Map Page
+  mapTitle: 'Atlas forestier mondial interactif',
+  mapSubtitle: 'Visualisez la répartition spatiale des ressources forestières pays par pays.',
+  legendTitle: 'Échelle de valeurs',
+  legendNoData: 'Non communiqué / Non disponible',
+  zoomIn: 'Zoom avant',
+  zoomOut: 'Zoom arrière',
+  resetZoom: 'Réinitialiser la vue',
+  clickToInspect: 'Cliquer sur un pays pour ouvrir sa fiche détaillée',
+
+  // Compare Page
+  compareTitle: 'Comparateur de pays',
+  compareSubtitle: 'Comparez objectivement les ressources et dynamiques forestières de plusieurs pays sans jugement ni classement politique.',
+  addCountry: 'Ajouter un pays',
+  removeCountry: 'Retirer',
+  noCountriesSelected: 'Veuillez sélectionner au moins un pays pour lancer la comparaison.',
+  indicatorComparison: 'Comparaison par variable',
+  timeSeriesComparison: 'Courbes temporelles comparatives',
+
+  // Indicators Page
+  indicatorsTitle: 'Répertoire des variables FAO FRA 2025',
+  indicatorsSubtitle: 'Définitions méthodologiques rigoureuses, unités de mesure et clés de lecture pour chaque indicateur.',
+  filterByCategory: 'Filtrer par catégorie',
+  searchIndicator: 'Rechercher un indicateur...',
+  unitLabel: 'Unité officielle',
+  faoTableLabel: 'Table FAO source',
+  methodologyLabel: 'Méthodologie FAO',
+
+  // About / Sources Page
+  aboutTitle: 'Sources de données & Transparence',
+  aboutSubtitle: 'Forestor est un projet indépendant et neutre d’exploration des statistiques forestières mondiales.',
+  officialSourceLabel: 'Source primaire officielle',
+  faoAttribution: 'Organisation des Nations Unies pour l’alimentation et l’agriculture (FAO)',
+  faoAssessment: 'Global Forest Resources Assessment (FRA 2025)',
+  faoCycle: 'Cycle d’évaluation 2025 (période 1990–2025)',
+  licenseTitle: 'Licence des données',
+  licenseDescription: 'Les données publiées par la FAO dans le cadre du FRA sont mises à disposition sous licence Creative Commons Attribution 4.0 International (CC BY 4.0), conformément aux conditions d’utilisation des données statistiques de la FAO.',
+  disclaimerTitle: 'Avertissement de non-affiliation',
+  disclaimerText: 'Forestor n’est pas une application officielle de la FAO. Les données sont requêtées directement auprès de l’API officielle fra-data.fao.org et présentées de manière rigoureuse et non partisane.',
+  apiDocLink: 'Consulter la documentation officielle de l’API FAO FRA',
+  faoPlatformLink: 'Visiter la plateforme officielle FAO FRA',
+};
+
+export type Translations = typeof fr;
