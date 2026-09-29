@@ -3,6 +3,7 @@ import { QualityStatus } from '../../types/indicator';
 import { formatMetricValue } from '../../domain/quality';
 import { useI18n } from '../../i18n/I18nContext';
 import { CheckCircle2, AlertCircle, Calculator, HelpCircle } from 'lucide-react';
+import { Tooltip } from '../common/Tooltip';
 
 interface MetricBadgeProps {
   value: number | null | undefined;
@@ -13,6 +14,7 @@ interface MetricBadgeProps {
   label?: string;
   year?: number | string;
   decimals?: number;
+  tooltipText?: string;
 }
 
 export const MetricBadge: React.FC<MetricBadgeProps> = ({
@@ -24,6 +26,7 @@ export const MetricBadge: React.FC<MetricBadgeProps> = ({
   label,
   year,
   decimals = 1,
+  tooltipText,
 }) => {
   const { t, locale } = useI18n();
 
@@ -33,9 +36,14 @@ export const MetricBadge: React.FC<MetricBadgeProps> = ({
   return (
     <div className="rounded-xl border border-stone-200 dark:border-stone-800 bg-white dark:bg-stone-900 p-4 shadow-2xs hover:border-emerald-200 dark:hover:border-emerald-800 transition space-y-2">
       <div className="flex items-start justify-between gap-2">
-        <span className="text-xs text-stone-500 dark:text-stone-400 font-medium line-clamp-1">
-          {label}
-        </span>
+        <div className="flex items-center gap-1.5 min-w-0">
+          <span className="text-xs text-stone-600 dark:text-stone-300 font-medium line-clamp-1">
+            {label}
+          </span>
+          {tooltipText && (
+            <Tooltip content={tooltipText} iconOnly position="top" />
+          )}
+        </div>
         {year && (
           <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 shrink-0">
             {year}
@@ -81,12 +89,11 @@ export const MetricBadge: React.FC<MetricBadgeProps> = ({
         )}
 
         {formula && (
-          <span
-            className="text-stone-400 hover:text-stone-600 dark:hover:text-stone-300 cursor-help ml-auto"
-            title={`Formule : ${formula}`}
-          >
-            <HelpCircle className="w-3 h-3" />
-          </span>
+          <Tooltip content={`Formule mathématique : ${formula}`} position="bottom">
+            <span className="text-stone-400 hover:text-stone-600 dark:hover:text-stone-300 cursor-help ml-auto">
+              <HelpCircle className="w-3 h-3" />
+            </span>
+          </Tooltip>
         )}
       </div>
     </div>

@@ -1,83 +1,161 @@
-# Forestor — Global Forest Resources Assessment (FAO FRA 2025)
+<div align="center">
+  <img src="public/logo.svg" alt="Forestor Logo" width="340" />
 
-**Forestor** est une application web et PWA moderne, scientifique et indépendante permettant d'explorer, de comprendre, de comparer et de visualiser les données forestières mondiales issues du **Global Forest Resources Assessment (FRA 2025)** de l’Organisation des Nations Unies pour l’alimentation et l’agriculture (**FAO**).
+  <p><strong>Observatoire Mondial des Ressources Forestières • FAO Global Forest Resources Assessment (FRA 2025)</strong></p>
 
----
-
-## 🌲 Objectif du Projet
-
-Forestor répond de manière simple et factuelle à des questions clés telles que :
-- Quelle est la superficie forestière d'un pays et sa part dans le territoire ?
-- Comment la couverture forestière a-t-elle évolué depuis 1990 ?
-- Quelles sont les dynamiques annuelles nettes d'expansion et de recul ?
-- Quelles quantités de biomasse et de carbone sont stockées dans les forêts ?
-- Quelle est la part de forêts primaires, naturellement régénérées ou plantées ?
-- Quelles proportions de forêts bénéficient d'un statut d'aire protégée ou de plan de gestion ?
-- Comment comparer objectivement plusieurs pays sans biais normatif ni classement partisan ?
-
-L'application privilégie la **compréhension scientifique et la traçabilité rigoureuse** des données plutôt que leur simple accumulation.
+  <p>
+    <img src="https://img.shields.io/badge/Donn%C3%A9es-FAO%20FRA%202025%20Officiel-047857?style=flat-square" alt="FAO FRA 2025" />
+    <img src="https://img.shields.io/badge/PWA-Offline%20First-059669?style=flat-square" alt="PWA Ready" />
+    <img src="https://img.shields.io/badge/Version-1.2.0-10b981?style=flat-square" alt="Version 1.2.0" />
+    <img src="https://img.shields.io/badge/React-19.0-38bdf8?style=flat-square&logo=react" alt="React 19" />
+    <img src="https://img.shields.io/badge/TypeScript-Strict-3178c6?style=flat-square&logo=typescript" alt="TypeScript" />
+    <img src="https://img.shields.io/badge/TailwindCSS-v4-38bdf8?style=flat-square&logo=tailwindcss" alt="Tailwind v4" />
+    <img src="https://img.shields.io/badge/Licence-CC%20BY%204.0-amber-600?style=flat-square" alt="License" />
+  </p>
+</div>
 
 ---
 
-## 🚀 Fonctionnalités Clés
+## 📸 Aperçu de l'Application
 
-1. **Page d'Accueil & Vue Mondiale 2025 :** Synthèse dynamique des chiffres clés planétaires (4,06 Mds ha, 31,2% des terres, 662 Gt de carbone), recherche instantanée parmi 236 pays et aperçu cartographique.
-2. **Fiches Pays Détaillées (`/country/:iso3`) :** Synthèse par catégorie fonctionnelle (Surface, Évolution, Régénération, Forêts primaires, Carbone, Protection, Propriété, Bois sur pied), séries chronologiques 1990–2025, et traçabilité vers les inventaires forestiers nationaux (IFN).
-3. **Atlas Mondial Interactif (`/map`) :** Carte vectorielle choroplèthe mondiale SVG fluide, autonome hors-ligne, avec zoom/panoramique, sélection d'indicateur, sélection d'année (1990–2025) et infobulles informatives.
-4. **Comparateur Multi-Pays (`/compare`) :** Sélection libre de n'importe quel pays du monde, visualisations en barres relatives et matrice comparative détaillée.
-5. **Répertoire d'Indicateurs (`/indicators`) :** Définitions méthodologiques officielles de la FAO, unités précises et clés de lecture pour éviter les erreurs d'interprétation.
-6. **Règle Absolue d'Intégrité : `null ≠ 0` :** Une donnée non communiquée ou manquante pour un pays n'est jamais transformée en zéro.
-7. **Traçabilité des Calculs Dérivés :** Tout calcul calculé par Forestor porte un badge distinctif « Calcul Forestor » avec la formule affichée.
-8. **PWA Installable & Offline-First :** Manifest PWA complet, icônes conformes (192px, 512px, maskable), bouton d'installation intégré et cache local permettant l'utilisation dégradée sans réseau.
-9. **Bilingue FR / EN :** Interface et définitions disponibles en français et en anglais avec commutateur instantané.
+<div align="center">
+  <img src="public/screenshots/forestor-preview.jpg" alt="Aperçu de Forestor — Dashboard et Cartographie Mondiale" width="100%" style="border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.12);" />
+</div>
 
 ---
 
-## 🏛️ Architecture & Technologies
+## 🌲 Présentation & Mission
 
-- **Frontend :** React 19, TypeScript, Vite 8, Tailwind CSS v4, Lucide Icons, Motion.
-- **Cartographie :** Rendu vectoriel SVG basé sur la topologie Natural Earth 110m (107 Ko) via `topojson-client`, 100% autonome sans clé API externe.
-- **Client API FAO :** `fraClient` (requêtes HTTP ciblées avec gestion d'erreurs, timeouts et retry), `fraRepository` (cache mémoire et localStorage), et `fraNormalizer` (typage strict).
-- **Proxy Transparent :** Proxy `/fao-api/` résolvant les restrictions CORS sans backend applicatif propriétaire.
-- **PWA :** `vite-plugin-pwa` avec Workbox pour la mise en cache des assets statiques et des réponses API.
-- **Tests :** Vitest avec tests unitaires pour la qualité des données, la normalisation, les calculs et l'i18n.
+**Forestor** est une plateforme scientifique, pédagogique et indépendante d'exploration des ressources forestières de notre planète. Elle exploite l'intégralité du corpus officiel du **Global Forest Resources Assessment (FRA 2025)** de la **FAO (Organisation des Nations Unies pour l'alimentation et l'agriculture)** couvrant **236 pays et territoires** de 1990 à 2025.
+
+L'application respecte des principes déontologiques stricts :
+- **Zéro statistique inventée ou extrapolée arbitrairement** : chaque métrique provient directement des inventaires forestiers nationaux (IFN) et des rapports d'experts de la FAO.
+- **Principe fondamental `null ≠ 0`** : l'absence de déclaration d'un pays est explicitement affichée comme *"Non renseigné"* avec une trame hachurée distinctive, sans jamais induire en erreur en la remplaçant par zéro.
+- **Traçabilité totale des calculs dérivés** : les ratios (densité carbone, parts protégées, variation annuelle) sont munis d'un badge *"Calcul Forestor"* et de leur formule explicite.
 
 ---
 
-## 📦 Installation & Démarrage
+## 🌟 Nouvelles Fonctionnalités & Modules
+
+### 🍔 1. Menu Hamburger Catégorisé
+Accessible sur ordinateur comme sur mobile via l'icône de menu, il organise toutes les fonctionnalités de l'application en 4 catégories claires :
+- **🌲 Exploration & Analyse** :
+  - *Vue d'ensemble mondiale* : KPIs planétaires FRA 2025 (4,06 Mds ha, 31,2% de couverture, 662 Gt de carbone).
+  - *Fiche détaillée Pays* : Analyse approfondie par nation avec séries chronologiques 1990–2025.
+  - *Comparateur Multi-Pays* : Analyse simultanée libre et benchmarking sans limite de pays.
+- **🗺️ Cartographie & Données** :
+  - *Carte Mondiale Interactive* : Cartographie vectorielle SVG choroplèthe en 5 quantiles avec zoom/panoramique.
+  - *Catalogue des 21 Indicateurs* : Définitions complètes, unités standardisées et filtres thématiques.
+- **📖 Méthodologie & Références** :
+  - *Sources officielles & Méthode FAO* : Documentation nationale, métadonnées IFN et licences.
+  - *Centre d’aide & Glossaire* : Définitions des termes clés (forêt primaire, OWL, biomasse, carbone).
+  - *Visite guidée interactive* : Onboarding interactif en 4 étapes pour découvrir les points forts de l'outil.
+- **⚙️ Paramètres Système & Préférences** :
+  - *Panneau de diagnostic & mises à jour* : Contrôle en direct de l'état applicatif.
+  - *Gestionnaire de Thème* : Sélecteur Clair, Sombre et Système.
+  - *Sélecteur de Langue* : Bilingue Français (FR) et Anglais (EN).
+
+---
+
+### ⚙️ 2. Paramètres Système & Mises à Jour Automatiques en Arrière-Plan
+
+Un volet complet de gestion du cycle de vie de l'application accessible depuis l'en-tête et le menu hamburger :
+- 📅 **Date de sortie** : `Version 1.2.0 • 28 Septembre 2026`.
+- ⏱️ **Date de dernière vérification** : Horodatage précis de la dernière vérification effectuée auprès du Service Worker et du serveur.
+- 🔄 **Bouton « Vérifier les mises à jour »** : Déclenche une vérification immédiate du cache et du manifest sans recharger la page.
+- ⚡ **Bouton « Forcer la mise à jour »** : Purge l'intégralité du CacheStorage et des états temporaires locaux puis réinitialise l'application pour charger instantanément la version la plus fraîche.
+- 🛰️ **Mises à jour automatiques en arrière-plan** :
+  - Système autonome qui surveille périodiquement (toutes les 15 min, 30 min, 1h ou 6h) la disponibilité de nouvelles versions.
+  - Téléchargement et installation silencieux en arrière-plan sans bloquer la navigation.
+  - Bandeau discret avertissant l'utilisateur lorsqu'une nouvelle version est prête.
+  - Détection automatique au retour de connexion (`online`) et au focus de l'onglet (`visibilitychange`).
+
+---
+
+### ☀️ 3. Thème Clair & Thème Sombre
+
+Forestor propose un thème **Clair** épuré et lumineux, spécialement conçu pour la lecture de données scientifiques et graphiques complexes :
+- Palette naturelle inspirée des canopées forestières (verts émeraudes, teintes pierre naturelle).
+- Contraste typographique rigoureusement calibré (WCAG AA).
+- Bascule instantanée entre **Clair**, **Sombre** et **Automatique (Système)** avec mémorisation dans le stockage local.
+
+---
+
+### 🧭 4. Onboarding & Visite Guidée
+
+- Modal d'accueil interactif en 4 étapes guidant l'utilisateur à travers la carte, le comparateur, les indicateurs et le fonctionnement hors-ligne.
+- Possibilité de cocher *"Ne plus afficher au démarrage"*.
+- Relançable à tout moment depuis le menu Hamburger ou le centre d'aide.
+
+---
+
+### 💡 5. Aide Contextuelle & Infobulles
+
+- **Infobulles interactives** (`<Tooltip />`) sur les cartes métriques pour expliquer immédiatement la signification des données (Surface boisée, Forêt primaire, Stock de carbone, Densité carbone).
+- **Centre d'Aide & Glossaire FAO** (`?`) : Recherche instantanée de définitions officielles (seuil de 0,5 ha, couvert > 10%, arbres > 5 m, réservoirs de biomasse).
+- Guide d'explication sur la règle `null ≠ 0` et liste des raccourcis clavier (`/` recherche, `?` aide, `Esc` fermer).
+
+---
+
+## 🗺️ Répertoire des 21 Indicateurs Officiels FRA 2025
+
+| Catégorie | Indicateur | Unité | Source FAO FRA |
+| :--- | :--- | :--- | :--- |
+| **Surfaces** | Superficie forestière totale | $1000\text{ ha}$ / $\text{ha}$ | `extentOfForest.forestArea` |
+| **Surfaces** | Part de la forêt dans le territoire | $\%$ | `forestAreaProportionLandArea2015` |
+| **Surfaces** | Autres terres boisées (OWL) | $1000\text{ ha}$ | `extentOfForest.otherWoodedLand` |
+| **Composition** | Forêt de régénération naturelle | $1000\text{ ha}$ | `forestCharacteristics.naturalForestArea` |
+| **Composition** | Forêt primaire déclarée | $1000\text{ ha}$ | `forestCharacteristics.primaryForest` |
+| **Composition** | Forêt plantée | $1000\text{ ha}$ | `forestCharacteristics.plantedForest` |
+| **Dynamiques** | Expansion forestière annuelle | $1000\text{ ha/an}$ | `forestAreaChange.forestExpansion` |
+| **Dynamiques** | Déforestation annuelle brute | $1000\text{ ha/an}$ | `forestAreaChange.deforestation` |
+| **Dynamiques** | Variation nette annuelle | $1000\text{ ha/an}$ | `forestAreaChange.netChange` |
+| **Biomasse** | Biomasse aérienne totale | $\text{Mt}$ | `biomassStock.aboveGround` |
+| **Biomasse** | Biomasse souterraine (racines) | $\text{Mt}$ | `biomassStock.belowGround` |
+| **Carbone** | Stock de carbone total | $\text{Mt}$ | `carbonStockTotal.carbonTotal` |
+| **Carbone** | Densité de carbone par hectare | $\text{t/ha}$ | Calcul Forestor dérivé |
+| **Protection** | Forêts en aire protégée | $1000\text{ ha}$ | `forestAreaWithinProtectedAreas` |
+| **Gouvernance** | Forêts sous plan de gestion à long terme | $1000\text{ ha}$ | `forestAreaWithLongTermManagementPlan` |
+| **Propriété** | Forêts publiques | $1000\text{ ha}$ | `forestOwnership.publicOwnership` |
+| **Propriété** | Forêts privées | $1000\text{ ha}$ | `forestOwnership.privateOwnership` |
+| **Perturbations**| Surfaces affectées par les feux | $1000\text{ ha}$ | `areaAffectedByFire.total` |
+| **Perturbations**| Surfaces affectées par insectes / maladies | $1000\text{ ha}$ | `disturbances.insects` / `diseases` |
+
+---
+
+## 💻 Raccourcis Clavier
+
+| Raccourci | Action |
+| :--- | :--- |
+| <kbd>/</kbd> | Ouvre la barre de recherche globale instantanée |
+| <kbd>?</kbd> | Ouvre le Centre d'aide et glossaire contextuel |
+| <kbd>Esc</kbd> | Ferme le menu hamburger, la recherche ou toute fenêtre modale |
+
+---
+
+## 🛠️ Commandes Disponibles
 
 ```bash
-# 1. Cloner et installer les dépendances
-npm install
-
-# 2. Lancer l'environnement de développement (port 3000)
+# Lancer le serveur de développement local (port 3000)
 npm run dev
 
-# 3. Lancer les tests unitaires
+# Exécuter les 21 tests unitaires Vitest (normalisation, calculs, qualité, updates)
 npm run test
 
-# 4. Vérifier les types TypeScript
+# Contrôle strict du typage TypeScript
 npm run lint
 
-# 5. Compiler pour la production
+# Compiler le bundle de production optimisé et la PWA
 npm run build
 
-# 6. Prévisualiser le build de production
+# Prévisualiser la version de production compilée
 npm run preview
 ```
 
 ---
 
-## 📊 Endpoints Officiels FAO FRA Utilisés
+## 📜 Attribution & Neutralité
 
-Forestor se connecte directement aux endpoints officiels documentés dans le Swagger OpenAPI de la FAO (`https://fra-data.fao.org/api-docs/`) :
-- `GET /explorer/data` : Données numériques par pays et par table (`extentOfForest`, `forestCharacteristics`, `forestAreaChange`, `forestAreaWithinProtectedAreas`, `forestOwnership`, `growingStockTotal`, `carbonStockTotal`, `sustainableDevelopment15_1_1`, `disturbances`, `areaAffectedByFire`).
-- `GET /cycle-data/descriptions` : Métadonnées méthodologiques et commentaires narratifs des inventaires nationaux.
-
----
-
-## 📜 Attribution & Licence
-
-- **Source primaire officielle :** Food and Agriculture Organization of the United Nations (FAO) — Global Forest Resources Assessment (FRA 2025).
-- **Conditions de mise à disposition des données :** Licence Creative Commons Attribution 4.0 International (**CC BY 4.0**).
-- **Avertissement de non-affiliation :** Forestor est une application scientifique et pédagogique indépendante et n'est pas une application officielle de la FAO.
+- **Source primaire des données :** Organisation des Nations Unies pour l'alimentation et l'agriculture (**FAO**) — *Global Forest Resources Assessment (FRA 2025)*.
+- **Licence des données :** Creative Commons Attribution 4.0 International (**CC BY 4.0**).
+- **Indépendance :** Forestor est un projet indépendant, non affilié formellement à la FAO, développé dans le respect scrupuleux de l'intégrité des données scientifiques publiées.

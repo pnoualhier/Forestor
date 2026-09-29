@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="320" height="80">
+  <defs>
+    <linearGradient id="logoBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#059669" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+    <linearGradient id="canopy1" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#34d399" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+    <linearGradient id="canopy2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#6ee7b7" />
+      <stop offset="100%" stop-color="#10b981" />
+    </linearGradient>
+  </defs>
+
+  <!-- Emblem Icon -->
+  <g transform="translate(10, 10)">
+    <rect width="60" height="60" rx="14" fill="url(#logoBg)" />
+    <!-- Biometric tree rings -->
+    <circle cx="30" cy="30" r="23" fill="none" stroke="#ffffff" stroke-opacity="0.18" stroke-width="1.5" stroke-dasharray="3 2" />
+    <circle cx="30" cy="30" r="16" fill="none" stroke="#ffffff" stroke-opacity="0.25" stroke-width="1.5" />
+    
+    <!-- Stylized pine/deciduous hybrid tree -->
+    <!-- Trunk -->
+    <path d="M 28 42 L 32 42 L 33 50 L 27 50 Z" fill="#fef3c7" opacity="0.9" />
+    <!-- Lower canopy -->
+    <path d="M 17 38 L 30 23 L 43 38 Z" fill="url(#canopy1)" />
+    <!-- Mid canopy -->
+    <path d="M 20 28 L 30 16 L 40 28 Z" fill="url(#canopy2)" />
+    <!-- Top needle -->
+    <circle cx="30" cy="15" r="2.5" fill="#a7f3d0" />
+  </g>
+
+  <!-- Brand Typography -->
+  <text x="82" y="38" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="24" fill="#047857" letter-spacing="1.5">FORESTOR</text>
+  <text x="83" y="54" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-weight="600" font-size="10.5" fill="#059669" letter-spacing="2">GLOBAL FOREST ASSESSMENT • FAO</text>
+</svg>

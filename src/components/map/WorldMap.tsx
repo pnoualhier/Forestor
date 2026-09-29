@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { feature } from 'topojson-client';
+import { geoEquirectangular, geoPath } from 'd3-geo';
 import { COUNTRY_BY_NUMERIC, COUNTRY_BY_ISO3 } from '../../data/countries';
 import { MapLegend } from './MapLegend';
 import { formatMetricValue } from '../../domain/quality';
@@ -89,35 +90,16 @@ export const WorldMap: React.FC<WorldMapProps> = ({
     return COLOR_SCALE[idx];
   };
 
-  // Convert coords to projection
-  const project = (coords: [number, number]): [number, number] => {
-    const x = ((coords[0] + 180) / 360) * 960;
-    const lat = Math.max(-85, Math.min(85, coords[1]));
-    const y = ((90 - lat) / 180) * 500;
-    return [x, y];
-  };
+  // D3 Equirectangular projection with antimeridian clipping (resolves horizontal tears across Russia, Alaska, etc.)
+  const projection = useMemo(() => {
+    return geoEquirectangular()
+      .scale(960 / (2 * Math.PI))
+      .translate([480, 250]);
+  }, []);
 
-  const polyToPath = (rings: [number, number][][]) => {
-    return rings
-      .map(
-        (ring) =>
-          ring
-            .map((pt, i) => {
-              const [px, py] = project(pt);
-              return `${i === 0 ? 'M' : 'L'} ${px.toFixed(1)} ${py.toFixed(1)}`;
-            })
-            .join(' ') + ' Z'
-      )
-      .join(' ');
-  };
-
-  const geomToPath = (geom: any): string => {
-    if (!geom) return '';
-    if (geom.type === 'Polygon') return polyToPath(geom.coordinates);
-    if (geom.type === 'MultiPolygon')
-      return geom.coordinates.map((poly: any) => polyToPath(poly)).join(' ');
-    return '';
-  };
+  const pathGenerator = useMemo(() => {
+    return geoPath(projection);
+  }, [projection]);
 
   const handleMouseDown = (e: React.MouseEvent) => {
     setIsDragging(true);
@@ -212,18 +194,19 @@ export const WorldMap: React.FC<WorldMapProps> = ({
               transform={`translate(${pan.x}, ${pan.y}) scale(${zoom})`}
               style={{ transformOrigin: '480px 250px', transition: isDragging ? 'none' : 'transform 0.1s ease-out' }}
             >
-              {geometries.map((feature: any) => {
-                const numericId = String(feature.id).padStart(3, '0');
-                const country = COUNTRY_BY_NUMERIC.get(numericId);
+              {geometries.map((feature: any, index: number) => {
+                const numericId = feature.id != null ? String(feature.id).padStart(3, '0') : undefined;
+                const country = numericId ? COUNTRY_BY_NUMERIC.get(numericId) : undefined;
                 const iso3 = country?.iso3;
-                const pathData = geomToPath(feature.geometry);
+                const pathData = pathGenerator(feature) || '';
                 const fillColor = getColor(iso3);
                 const isSelected = selectedCountryIso3 && selectedCountryIso3 === iso3;
                 const isHovered = hoveredIso && hoveredIso === iso3;
+                const featureKey = feature.id != null ? `country-feature-${feature.id}` : `country-feature-idx-${index}`;
 
                 return (
                   <path
-                    key={feature.id}
+                    key={featureKey}
                     d={pathData}
                     fill={fillColor}
                     stroke={isSelected ? '#059669' : isHovered ? '#0f766e' : '#ffffff'}

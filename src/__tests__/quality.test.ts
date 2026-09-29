@@ -39,4 +39,13 @@ describe('Data Quality and Missing Values Rules (Section 15 & 28)', () => {
     expect(formatMetricValue(null, 'ha', 'en')).toBe('Not reported');
     expect(formatMetricValue(1234.5, 'kha', 'fr')).toBe('1\u202f234,5 kha');
   });
+
+  it('handles small fractional numbers and various decimal arguments without throwing RangeError', () => {
+    expect(() => formatMetricValue(0.42, '%', 'fr', 1)).not.toThrow();
+    expect(() => formatMetricValue(0.42, '%', 'fr', 0)).not.toThrow();
+    expect(() => formatMetricValue(-0.05, '%', 'fr', 1)).not.toThrow();
+    expect(() => formatMetricValue(0.001, 'Mt', 'en', 3)).not.toThrow();
+    expect(formatMetricValue(0.42, '%', 'fr', 1)).toBe('0,42 %');
+    expect(formatMetricValue(0.42, '%', 'fr', 0)).toBe('0 %');
+  });
 });

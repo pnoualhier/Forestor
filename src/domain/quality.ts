@@ -79,9 +79,17 @@ export function formatMetricValue(
     return locale === 'fr' ? 'Non renseigné' : 'Not reported';
   }
 
+  const safeDecimals = typeof decimals === 'number' && !isNaN(decimals) ? decimals : 1;
+  const isSmallNonZero = Math.abs(value) < 1 && value !== 0;
+  const maxDigits = Math.max(
+    0,
+    Math.min(20, Math.round(isSmallNonZero && safeDecimals > 0 ? Math.max(safeDecimals, 2) : safeDecimals))
+  );
+  const minDigits = Math.min(maxDigits, isSmallNonZero ? 2 : 0);
+
   const formatter = new Intl.NumberFormat(locale === 'fr' ? 'fr-FR' : 'en-US', {
-    maximumFractionDigits: decimals,
-    minimumFractionDigits: Math.abs(value) < 1 && value !== 0 ? 2 : 0,
+    maximumFractionDigits: maxDigits,
+    minimumFractionDigits: minDigits,
   });
 
   const formatted = formatter.format(value);
